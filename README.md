@@ -1,32 +1,16 @@
-uses agent architecture that is largely outdated, for most projects today I would just use the llama index library, which does what this agent architecture does except with a bit more sophistication and all the complex logic abstracted away.
+Uses an agent architecture that is largely outdated. For most projects today, I would use the LlamaIndex library, which performs the same functions as this agent architecture but with more sophistication and all the complex logic abstracted away. That said, I'm including this here to showcase the ability and inclination to build tools based on a project's needs.
 
-that said, I'm including this here to showcase the ability and inclination to build tools based on a project's needs. 
+This agent workflow operates in two steps:
 
-this agent workflow operates in two steps:
+1. **Deliberation**: Without tools, the agent is given the prompt to think through the problem first.
+2. **Execution**: With tools, it executes the plan that deliberation came up with.
 
-1. Deliberation
-   1.  w/o tools, the agent is given the prompt to think through the problem first. 
-2. Execution
-    1. w/ tools, to execute the plan that deliberation came up with
+The architecture is designed to resemble OpenAI's O1 model, which thinks before it acts. There is a Gmail client that I reuse in many projects. My implementation of this has also evolved; I've learned that sending emails directly through the API causes many emails to go to spam because the headers expose these emails as potentially suspicious. Nowadays, I use the client not to send emails directly but to save the emails as drafts and then take advantage of Google Apps Scripts to mass send all drafted emails to the intended recipients. This makes the emails indistinguishable from regular emails while still leveraging the intended functionality.
 
-the architecture is meant to resemble open ai's o1 model, which thinks before it acts.
+That said, we still received a decent response rate, allowing my bosses to greenlight the next project—so, small mercies. If you're going to use this, be sure to input your OpenAI API key into the environment variable.
 
+**Weaknesses of the Project:**
+- Need to update the file attachment path in both the logic and the prompt.
+- If we were to develop this project further, we'd want to refactor so that there's one place where we define the email attachment paths—perhaps by consolidating all the config sections into a singular config file.
 
-
-
-
-there is the gmail client which I reuse in a lot of projects. my implementation of this has also evoved; I've learned that sending emails simply through the api will cause a lot of emails go to spam, the headers expose these emails as potentially suspicious.
-
-Now adays, I use the client, not to send emails directly, but to save the emails as drafts then take advantage of Google Apps Scripts to mass send all drafted emails to the intended recipients. This leaves it indstinguishable from regular emails while still leveraging the  
-
-That said, we still did get a decent enough response rate for my bosses to greenlight the next project. so, small mercies.
-
-
-If you're going to use this, be sure to input your openai api key into the environment variable 
-
-
-weaknessess of the project:
-   need to update the file attachment path in the logic, and also in the prompt. if we were developing this project further, we'd want to refactor so that there's one place that we define the email attatchment paths-- maybe refactor all the config sections into a singlular config file-- but as we said, this architecture is largely outdated in favor of the llama-index library.
-
-
-like with most of my projects, I've inhected my own personal natural datetime logger
+As mentioned, this architecture is largely outdated in favor of the LlamaIndex library. Like with most of my projects, I've injected my own personal natural datetime logger.
