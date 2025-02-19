@@ -7,6 +7,7 @@ from ndt_logger import initialize_logging
 from agents.outreach_agent.outreach_agent import OutreachAgent
 from agents.outreach_agent.outreach_prompt import AGENT_PROMPT
 
+
 class EmailOutreachProcessor:
     """
     Processes a specific slice of recipients: [begin_index, end_index), with each recipient

@@ -53,7 +53,7 @@ class OutreachAgent(BaseAgent):
         """
         super().__init__(api_key=api_key, model_name=model_name)
 
-        logger.debug("Initializing OutreachAgent...")
+        logger.info("Initializing OutreachAgent...")
 
         # 1. Persona & Tools Description
         self.add_system_message(self.deliberation_messages, self.PERSONA)
@@ -67,7 +67,7 @@ class OutreachAgent(BaseAgent):
         # 3. Instantiate EmailTools
         self.email_tools = OutreachTools(outreach_label=outreach_label, send_mode=send_mode)
 
-        logger.debug("OutreachAgent initialized successfully.")
+        logger.info("OutreachAgent initialized successfully.")
 
     # -------------------------------------------------------------------------
     # Tool Handling
@@ -77,7 +77,7 @@ class OutreachAgent(BaseAgent):
         Overrides BaseAgent's method to handle OutreachAgent's specific minimal workflow tool:
           - process_email_and_label
         """
-        logger.debug(f"Handling tool call: {function_name} with arguments: {arguments}")
+        logger.info(f"Handling tool call: {function_name} with arguments: {arguments}")
 
         if function_name == "process_email_and_label":
             return self._process_process_email_and_label(arguments)

@@ -4,6 +4,7 @@ from typing import List, Dict, Optional
 
 import html
 
+from google.auth.exceptions import RefreshError
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -42,7 +43,7 @@ class GmailClient:
 
     def _get_credentials(self):
         """
-        Acquires OAuth credentials from agents/email_agent/gmail_client/config/token.json (if valid),
+        Acquires OAuth credentials from utils/gmail_client/config/token.json (if valid),
         otherwise runs the OAuth flow to generate a new token.json.
         """
         token_path = "utils/gmail_client/config/token.json"
@@ -50,20 +51,40 @@ class GmailClient:
 
         # Load existing token if it exists
         if os.path.exists(token_path):
-            creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+            try:
+                creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+            except Exception as e:
+                logger.error("Error loading credentials: %s", e)
+                creds = None
 
-        # If there are no valid credentials available, request login
+        # If credentials don't exist or are invalid, attempt to refresh or reauthenticate.
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
+                try:
+                    creds.refresh(Request())
+                    logger.info("Successfully refreshed credentials.")
+                except RefreshError as e:
+                    logger.error("Token refresh failed: %s", e)
+                    # Remove the invalid token file and reset creds to force re-authentication.
+                    try:
+                        os.remove(token_path)
+                        logger.info("Removed invalid token file at %s", token_path)
+                    except Exception as remove_error:
+                        logger.error("Failed to remove token file: %s", remove_error)
+                    creds = None  # Ensure new OAuth flow is triggered.
+            if not creds:
+                logger.info("Starting new OAuth flow to obtain credentials.")
                 flow = InstalledAppFlow.from_client_secrets_file(
                     "utils/gmail_client/config/credentials.json", SCOPES
                 )
                 creds = flow.run_local_server(port=0)
-            # Save the credentials for the next run
-            with open(token_path, "w") as token_file:
-                token_file.write(creds.to_json())
+            # Save the credentials for the next run.
+            try:
+                with open(token_path, "w") as token_file:
+                    token_file.write(creds.to_json())
+                logger.info("Saved new credentials to %s", token_path)
+            except Exception as e:
+                logger.error("Failed to save credentials: %s", e)
 
         return creds
 

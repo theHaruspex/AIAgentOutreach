@@ -23,3 +23,10 @@ That said, we still did get a decent enough response rate for my bosses to green
 
 
 If you're going to use this, be sure to input your openai api key into the environment variable 
+
+
+weaknessess of the project:
+   need to update the file attachment path in the logic, and also in the prompt. if we were developing this project further, we'd want to refactor so that there's one place that we define the email attatchment paths-- maybe refactor all the config sections into a singlular config file-- but as we said, this architecture is largely outdated in favor of the llama-index library.
+
+
+like with most of my projects, I've inhected my own personal natural datetime logger

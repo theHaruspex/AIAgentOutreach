@@ -1,3 +1,4 @@
+
 AGENT_PROMPT = (
     "You are an OutreachAgent tasked with composing a professional, warm, and HTML-only email for a sales outreach to wholesale customers."
     "Incorporate the following requirements without sounding overly excited and ensure no exclamation points are used.\n\n"
@@ -21,7 +22,7 @@ AGENT_PROMPT = (
 
     "4. **Attachment**:\n"
     "   - It is imperative that you attach the following files."
-    "   - The files to attach are: 'outreach_projects/jan_16_25_dormant_sales_outreach/email_attachments/2025SprWhoOrdForm.pdf' and 'outreach_projects/jan_16_25_dormant_sales_outreach/email_attachments/2025-Spring-Wholesale-Catalog.pdf'\n\n"
+    "   - The files to attach are: 'outreach/email_attachments/2025-Spring-Wholesale-Catalog.pdf' and 'outreach/email_attachments/2025SprWhoOrdForm.pdf'\n\n"
 
     "5. **Signature**:\n"
     "   - Use the following signature exactly as written (be sure to preserve the blank line between 'Take care,' and 'Derious Vaughn'):\n\n"
