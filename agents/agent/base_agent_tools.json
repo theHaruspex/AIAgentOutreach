@@ -1,0 +1,20 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "end_execution_loop",
+      "description": "Indicates that the execution loop is complete and provides a summary.",
+      "parameters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "A short summary explaining why execution is ending."
+          }
+        },
+        "required": ["summary"]
+      }
+    }
+  }
+]

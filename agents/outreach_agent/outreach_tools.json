@@ -1,0 +1,58 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "process_email_and_label",
+      "description": "Processes an email with optional attachments and assigns a label for easy retrieval.",
+      "parameters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "to_addrs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The email addresses of the recipients."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The subject line for the email."
+          },
+          "body": {
+            "type": "string",
+            "description": "The body content of the email (HTML by default)."
+          },
+          "attachment_path": {
+            "type": "string",
+            "description": "Single file path of an attachment (optional). If present, this will be added to the email.",
+            "nullable": true
+          },
+          "attachment_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of file paths for multiple attachments (optional).",
+            "nullable": true
+          }
+        },
+        "required": ["to_addrs", "subject", "body"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "A message indicating whether the email was saved and labeled successfully."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message in case of failure.",
+            "nullable": true
+          }
+        }
+      }
+    }
+  }
+]
