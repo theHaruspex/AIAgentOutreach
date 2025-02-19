@@ -1,6 +1,3 @@
-# File: root_threader.py
-# Path: root_threader.py
-
 import threading
 from outreach.email_outreach_processor import run_processor
 
@@ -33,26 +30,26 @@ THREADS_CONFIG = [
         "begin_index": 1,
         "end_index": 2
     },
-    # {
-    #     "name": "T2",
-    #     "begin_index": 2,
-    #     "end_index": 3
-    # },
-    # {
-    #     "name": "T3",
-    #     "begin_index": 3,
-    #     "end_index": 4
-    # },
-    # {
-    #     "name": "T4",
-    #     "begin_index":4,
-    #     "end_index": 5
-    # },
-    # {
-    #     "name": "T5",
-    #     "begin_index": 5,
-    #     "end_index": 6
-    # },
+    {
+        "name": "T2",
+        "begin_index": 2,
+        "end_index": 3
+    },
+    {
+        "name": "T3",
+        "begin_index": 3,
+        "end_index": 4
+    },
+    {
+        "name": "T4",
+        "begin_index":4,
+        "end_index": 5
+    },
+    {
+        "name": "T5",
+        "begin_index": 5,
+        "end_index": 6
+    },
 
 ]
 
