@@ -13,4 +13,4 @@ That said, we still received a decent response rate, allowing my bosses to green
 - Need to update the file attachment path in both the logic and the prompt.
 - If we were to develop this project further, we'd want to refactor so that there's one place where we define the email attachment paths—perhaps by consolidating all the config sections into a singular config file.
 
-As mentioned, this architecture is largely outdated in favor of the LlamaIndex library. Like with most of my projects, I've injected my own personal natural datetime logger.
+As mentioned, this architecture is largely outdated in favor of the LlamaIndex library. Like with most of my projects, I've injected my own personal natural datetime logger. 
